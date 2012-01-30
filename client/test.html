@@ -1,7 +1,7 @@
 <script>
 	var server = "ws://192.168.0.14:30000";
 	var websocket = new WebSocket(server);
-	websocket.onmessage = function(evt){ console.log(evt); }
+	websocket.onmessage = function(evt){ console.log(evt.data); }
 	setTimeout(function(){ websocket.send("ola"); }, 1000);
 	
 </script>
