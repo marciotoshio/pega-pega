@@ -3,11 +3,11 @@
 		<link rel="stylesheet" href="http://twitter.github.com/bootstrap/1.4.0/bootstrap.min.css">
 		<link rel="stylesheet" href="style.css" />
 	</head>
-	<body onload="new PegaPega.ElementsControl().init();">
+	<body>
 		<h1>Pega - Pega</h1>
 		<section id="startup-screen">
 			<form class="form-stacked">
-				<label for="playerName">Your name:<label/> <input type="text" name="playerName" id="playerName" /> 
+				<label for="player-name">Your name:<label/> <input type="text" name="player-name" id="player-name" /> 
 				<div class="action">
 					<button id="enter-game" class="btn primary">Enter</button>
 				</div>
@@ -17,6 +17,10 @@
 			<canvas id="the-field" width="600" height="300" />
 		</section>
 
+		<script src="scripts/pegapega.js"></script>
 		<script src="scripts/elementscontrol.js"></script>
+		<script>
+			new PegaPega.TheGame().start();
+		</script>
 	<body/>
 </html>

@@ -1,20 +1,28 @@
 var PegaPega = PegaPega || {};
 
 PegaPega.ElementsControl = function() {
-	this.init = function() {
-		bindEnterGame();
+	
+	var callback;
+
+	this.init = function (initCallback) {
+		var enterButton = document.getElementById('enter-game');
+		enterButton.addEventListener('click', hideStartupShowMain, false);
+		enterButton.addEventListener('click', getPlayerName, false);
+		callback = initCallback;
 	}
 
 	//private
-	function bindEnterGame() {
-		var button = document.getElementById('enter-game');
-		button.addEventListener('click', function() {
-			hideStartup();
-			showMain();
-			return false;
-		});
+	function hideStartupShowMain(evt) {
+		evt.preventDefault();
+		hideStartup();
+		showMain();
 	}
-
+	
+	function getPlayerName() {
+		var playerName = document.getElementById('player-name').value;
+		callback(playerName);
+	}
+	
 	function hideStartup() {
 		var screen = document.getElementById('startup-screen');
 		screen.style.display = 'none';
