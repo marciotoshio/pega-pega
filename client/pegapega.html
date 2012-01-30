@@ -1,9 +1,22 @@
 <html>
 	<head>
+		<link rel="stylesheet" href="http://twitter.github.com/bootstrap/1.4.0/bootstrap.min.css">
 		<link rel="stylesheet" href="style.css" />
 	</head>
-	<body>
+	<body onload="new PegaPega.ElementsControl().init();">
 		<h1>Pega - Pega</h1>
-		<canvas id="theField" width="600" height="300" />
+		<section id="startup-screen">
+			<form class="form-stacked">
+				<label for="playerName">Your name:<label/> <input type="text" name="playerName" id="playerName" /> 
+				<div class="action">
+					<button id="enter-game" class="btn primary">Enter</button>
+				</div>
+			</form>
+		</section>
+		<section id="main-screen" style="display: none;">
+			<canvas id="the-field" width="600" height="300" />
+		</section>
+
+		<script src="scripts/elementscontrol.js"></script>
 	<body/>
 </html>
