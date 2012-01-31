@@ -5,6 +5,7 @@ PegaPega.TheGame = function() {
 	var host = "ws://192.168.1.2:30000";
 	var elementsControl = new PegaPega.ElementsControl();
 	var socket = new PegaPega.WebSocket();
+	var draw = new PegaPega.Draw();
 
 	this.start  = function() {
 		elementsControl.init(initCallback);
@@ -18,15 +19,10 @@ PegaPega.TheGame = function() {
 	}
 
 	function onMessage(msg) {
-		var result = JSON.parse(msg);
-		for(var i = 0; i < result.length; i++) {
-			var player = result[i].player;
-			console.log(player.name + " :: posX = " + player.posX + " :: posY = " + player.posY);
-			player.posX = parseInt(player.posX) + 10;
-			player.posY = parseInt(player.posY) + 5;
-			setTimeout(function() {
-				socket.sendMessage("[info]::posX=" + player.posX + "::posY=" + player.posY);
-			}, 5000);
+		var players = JSON.parse(msg);
+		for(var i = 0; i < players.length; i++) {
+			var player = players[i].player;
+			draw.player(player.name, player.posX, player.posY);
 		}
 	}
 }
