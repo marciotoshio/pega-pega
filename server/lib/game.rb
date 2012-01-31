@@ -14,7 +14,7 @@ module PegaPega
 			@players << player
 		end
 
-		def set_player_info(client, msg)
+		def move(client, msg)
 			players = @players.select {|p| p.client == client}
 			if players != nil
 				player = players.first
