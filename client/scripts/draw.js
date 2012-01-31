@@ -12,4 +12,8 @@ PegaPega.Draw = function() {
     context.strokeStyle = "black";
     context.stroke();
 	}
+
+	this.clear = function() {
+		context.clearRect(0, 0, 600, 300);
+	}
 }

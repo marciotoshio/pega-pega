@@ -15,9 +15,7 @@ module PegaPega
 			players = @players.select {|p| p.client == client}
 			if players != nil
 				player = players.first
-				info = get_player_info_from_message(msg)
-				player.posX = info[1]
-				player.posY = info[2]
+				player.move get_player_direction_from_message(msg)
 			end
 		end
 
@@ -33,8 +31,8 @@ module PegaPega
 			msg[8..-1]
 		end
 
-		def get_player_info_from_message(msg)
-			msg.match(/::posX=(.+)::posY=(.+)/)
+		def get_player_direction_from_message(msg)
+			msg[8..-1]
 		end
 	end
 end

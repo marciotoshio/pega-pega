@@ -15,14 +15,33 @@ PegaPega.TheGame = function() {
 	function initCallback(playerName) {
 		socket.connect(host, onMessage, function() {
 			socket.sendMessage("[join]::" + playerName);
+			window.addEventListener('keydown', onKeyDown, true);
 		});
 	}
 
 	function onMessage(msg) {
 		var players = JSON.parse(msg);
+		draw.clear();
 		for(var i = 0; i < players.length; i++) {
 			var player = players[i].player;
 			draw.player(player.name, player.posX, player.posY);
+		}
+	}
+
+	function onKeyDown(evt) {
+		switch (evt.keyCode) {
+		  case 38:  /* Up arrow was pressed */
+				socket.sendMessage("[move]::up");
+		    break;
+		  case 40:  /* Down arrow was pressed */
+				socket.sendMessage("[move]::down");
+		    break;
+		  case 37:  /* Left arrow was pressed */
+				socket.sendMessage("[move]::left");
+		    break;
+		  case 39:  /* Right arrow was pressed */
+				socket.sendMessage("[move]::right");
+		    break;
 		}
 	}
 }
