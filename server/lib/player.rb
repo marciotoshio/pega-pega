@@ -2,7 +2,7 @@ require "json"
 
 module PegaPega
 	class Player
-		attr_accessor :name, :posX, :posY, :client
+		attr_accessor :name, :posX, :posY, :client, :catcher
 
 		def initialize(client, name)
 			@client = client
@@ -10,6 +10,7 @@ module PegaPega
 			@posX = Random.new.rand(0..600) #canvas width
 			@posY = Random.new.rand(0..300) #canvas height
 			@speed = 5
+			@catcher = true
 		end
 
 		def move(direction)
@@ -26,7 +27,7 @@ module PegaPega
 		end
 
 		def to_json(*a)
-		  { "player" => { name: @name, posX: @posX, posY: @posY } }.to_json(*a)
+		  { "player" => { name: @name, posX: @posX, posY: @posY, isCatcher: @catcher } }.to_json(*a)
 		end
 	end
 end	

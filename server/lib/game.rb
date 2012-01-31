@@ -7,6 +7,7 @@ module PegaPega
 		end
 
 		def join(client, msg)
+			@players.each { |p| p.catcher = false }
 			player = Player.new client, get_player_name_from_message(msg)
 			@players << player
 		end
