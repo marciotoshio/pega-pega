@@ -4,7 +4,7 @@ require_relative 'lib/game'
 
 module PegaPega
 	@game = Game.new
-	@port = 30000
+	@port = ENV['PORT'] || 30000
 	
 	def self.debug_message(msg)
 		puts "PegaPega => #{msg}"
