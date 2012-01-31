@@ -1,9 +1,9 @@
 var PegaPega = PegaPega || {};
 
 PegaPega.WebSocket = function() {
-	var socket;	
+	var socket;
 
-	this.connect = function(host, onMessageCallback) {
+	this.connect = function(host, onMessageCallback, onOpenCallback) {
 		socket = new WebSocket(host);
 
 		socket.onmessage = function(resp){
@@ -11,7 +11,7 @@ PegaPega.WebSocket = function() {
 		}
 
 		socket.onopen = function(){
-			websocket.sendMessage('Hi');
+			onOpenCallback();
 		}
 
 		socket.onerror = function(err){
