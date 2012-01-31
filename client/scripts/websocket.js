@@ -4,6 +4,7 @@ PegaPega.WebSocket = function() {
 	var socket;
 
 	this.connect = function(host, onMessageCallback, onOpenCallback) {
+		host = "ws://" + host + ":30000";
 		socket = new WebSocket(host);
 
 		socket.onmessage = function(resp){
