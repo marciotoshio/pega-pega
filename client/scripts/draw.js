@@ -5,15 +5,15 @@ PegaPega.Draw = function() {
 
 	this.player = function(name, x, y, isCatcher) {
 		context.beginPath();
-    context.rect(x, y, 20, 20);
-    context.fillStyle = isCatcher ? "#FF0000" : "#8ED6FF";
-    context.fill();
-    context.lineWidth = 3;
-    context.strokeStyle = "black";
-    context.stroke();
+		context.rect(x, y, 20, 20);
+		context.fillStyle = isCatcher ? "#FF0000" : "#8ED6FF";
+		context.fill();
+		context.lineWidth = 3;
+		context.strokeStyle = "black";
+		context.stroke();
 	}
 
-	this.clear = function() {
-		context.clearRect(0, 0, 600, 300);
+	this.clear = function(canvasWidth, canvasHeight) {
+		context.clearRect(0, 0, canvasWidth, canvasHeight);
 	}
 }

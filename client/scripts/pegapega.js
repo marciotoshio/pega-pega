@@ -2,7 +2,9 @@ var PegaPega = PegaPega || {};
 
 PegaPega.TheGame = function() {
 
-	var host = "ws://192.168.1.2:30000";
+	var host = "ws://bandolim:30000";
+	var canvasWidth = 690;
+	var canvasHeight = 400;
 	var elementsControl = new PegaPega.ElementsControl();
 	var socket = new PegaPega.WebSocket();
 	var draw = new PegaPega.Draw();
@@ -21,7 +23,7 @@ PegaPega.TheGame = function() {
 
 	function onMessage(msg) {
 		var players = JSON.parse(msg);
-		draw.clear();
+		draw.clear(canvasWidth, canvasHeight);
 		elementsControl.clearPlayerList();
 		for(var i = 0; i < players.length; i++) {
 			var player = players[i].player;
