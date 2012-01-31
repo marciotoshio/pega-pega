@@ -18,6 +18,9 @@ PegaPega.TheGame = function() {
 	}
 
 	function onMessage(msg) {
-		console.log("message from server: " + msg);
+		var result = JSON.parse(msg);
+		for(var i = 0; i < result.length; i++) {
+			console.log(result[i].player.name + " :: posX = " + result[i].player.posX + " :: posY = " + result[i].player.posY);
+		}
 	}
 }
