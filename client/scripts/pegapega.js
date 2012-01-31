@@ -2,7 +2,6 @@ var PegaPega = PegaPega || {};
 
 PegaPega.TheGame = function() {
 
-	//var host = "ws://pegapega.herokuapp.com:42913";
 	var host = "ws://192.168.1.2:30000";
 	var elementsControl = new PegaPega.ElementsControl();
 	var socket = new PegaPega.WebSocket();
@@ -23,8 +22,10 @@ PegaPega.TheGame = function() {
 	function onMessage(msg) {
 		var players = JSON.parse(msg);
 		draw.clear();
+		elementsControl.clearPlayerList();
 		for(var i = 0; i < players.length; i++) {
 			var player = players[i].player;
+			elementsControl.addToLIst(player);
 			draw.player(player.name, player.posX, player.posY, player.isCatcher);
 		}
 	}

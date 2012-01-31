@@ -8,9 +8,28 @@ PegaPega.ElementsControl = function() {
 		var enterButton = document.getElementById('enter-game');
 		enterButton.addEventListener('click', hideStartupShowMain, false);
 		enterButton.addEventListener('click', getPlayerName, false);
+		
+		this.clearPlayerList ();
+		
 		callback = initCallback;
 	}
 
+	this.clearPlayerList = function () {
+		var list = document.getElementById('the-list');
+		while (list.firstChild) 
+			list.removeChild(list.firstChild);
+	}
+	
+	this.addToLIst = function (player) {
+		var list = document.getElementById('the-list');
+		var item = document.createElement('li');
+		item.innerText = player.name;
+		if(player.isCatcher) {
+			item.className = "catcher";
+		}
+		list.appendChild(item);
+	}
+	
 	//private
 	function hideStartupShowMain(evt) {
 		evt.preventDefault();
