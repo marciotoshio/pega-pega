@@ -2,7 +2,6 @@ require 'eventmachine'
 require 'em-websocket'
 require_relative 'lib/game'
 
-
 module PegaPega
 	@game = Game.new
 	@port = 30000
@@ -20,7 +19,7 @@ module PegaPega
 		  
 			client.onmessage do |msg|
 				@game.join(client, msg) if msg.include? "[join]"
-				#@game.set_player_info(msg) if msg.include? "[info]"
+				@game.set_player_info(client, msg) if msg.include? "[info]"
 		    @game.send_players_info
 				debug_message "message received: " + msg
 		  end

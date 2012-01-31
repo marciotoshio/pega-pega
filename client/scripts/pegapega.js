@@ -20,7 +20,13 @@ PegaPega.TheGame = function() {
 	function onMessage(msg) {
 		var result = JSON.parse(msg);
 		for(var i = 0; i < result.length; i++) {
-			console.log(result[i].player.name + " :: posX = " + result[i].player.posX + " :: posY = " + result[i].player.posY);
+			var player = result[i].player;
+			console.log(player.name + " :: posX = " + player.posX + " :: posY = " + player.posY);
+			player.posX = parseInt(player.posX) + 10;
+			player.posY = parseInt(player.posY) + 5;
+			setTimeout(function() {
+				socket.sendMessage("[info]::posX=" + player.posX + "::posY=" + player.posY);
+			}, 5000);
 		}
 	}
 }
