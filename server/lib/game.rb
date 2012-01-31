@@ -29,9 +29,7 @@ module PegaPega
 		end
 		
 		def get_player_name_from_message(msg)
-			playerName = msg
-			playerName["[join]::"] = ""
-			playerName
+			msg[8..-1]
 		end
 	end
 end
