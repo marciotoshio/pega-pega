@@ -3,8 +3,8 @@ require 'em-websocket'
 require_relative 'lib/game'
 
 module PegaPega
-	@game = Game.new
-	@port = ENV['PORT'] || 30000
+	@game = Game.new 690, 400
+	@port = 30000
 	
 	def self.debug_message(msg)
 		puts "PegaPega => #{msg}"

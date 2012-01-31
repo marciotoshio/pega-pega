@@ -4,11 +4,11 @@ module PegaPega
 	class Player
 		attr_accessor :name, :posX, :posY, :client, :catcher
 
-		def initialize(client, name)
+		def initialize(client, name, canvasWidth, canvasHeight)
 			@client = client
 			@name = name
-			@posX = Random.new.rand(0..600) #canvas width
-			@posY = Random.new.rand(0..300) #canvas height
+			@posX = Random.new.rand(50..canvasWidth - 50)
+			@posY = Random.new.rand(50..canvasHeight - 50)
 			@speed = 5
 			@catcher = true
 		end

@@ -4,19 +4,46 @@
 		<link rel="stylesheet" href="style.css" />
 	</head>
 	<body>
-		<h1>Pega - Pega</h1>
-		<section id="startup-screen">
-			<form class="form-stacked">
-				<label for="player-name">Your name:<label/> <input type="text" name="player-name" id="player-name" /> 
-				<div class="action">
-					<button id="enter-game" class="btn primary">Enter</button>
+		<div class="container">
+			<div class="content">
+				
+				<div class="page-header">
+					<h1>Pega - Pega</h1>
 				</div>
-			</form>
-		</section>
-		<section id="main-screen" style="display: none;">
-			<canvas id="the-field" width="600" height="300" />
-		</section>
-
+			
+				<div class="row">
+					<div class="span12">
+						
+						<section id="startup-screen">
+							<form class="form-stacked">
+								<label for="player-name">Your name:<label/> <input type="text" name="player-name" id="player-name" /> 
+								<div class="action">
+									<button id="enter-game" class="btn primary">Enter</button>
+								</div>
+							</form>
+						</section>
+						
+						<section id="main-screen" style="display: none;">
+							<canvas id="the-field" width="690" height="400" />
+						</section>
+					
+					</div>
+					<div class="span2">
+					
+						<section id="player-list">
+							<ul>
+								<li>player 1</li>
+								<li>player 2</li>
+								<li>player 3</li>
+								<li>player 4</li>
+							</ul>
+						</section>
+					
+					</div>
+				</div>
+			</div>
+		</div>
+		
 		<script src="scripts/pegapega.js"></script>
 		<script src="scripts/websocket.js"></script>
 		<script src="scripts/draw.js"></script>
