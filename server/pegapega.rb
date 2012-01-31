@@ -15,24 +15,24 @@ module PegaPega
 			
 			client.onopen do
 				debug_message "client connected: " + client.to_s
-		  end
+			end
 		  
 			client.onmessage do |msg|
 				@game.join(client, msg) if msg.include? "[join]"
 				@game.set_player_info(client, msg) if msg.include? "[move]"
-		    @game.send_players_info
+				@game.send_players_info
 				debug_message "message received: " + msg
-		  end
+			end
 		  
 			client.onclose do
-		    @game.remove_player client
+				@game.remove_player client
 				@game.send_players_info
 				debug_message "bye " + client.to_s
-		  end
+			end
 		
 			client.onerror do |error|
 				if error.kind_of?(EM::WebSocket::WebSocketError)
-		  		debug_message "error: " + error.to_s
+					debug_message "error: " + error.to_s
 				end
 			end
 		end	

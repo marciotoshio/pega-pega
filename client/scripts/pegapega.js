@@ -5,6 +5,8 @@ PegaPega.TheGame = function() {
 	var host = "localhost"; // change this to the address of your server
 	var canvasWidth = 690;
 	var canvasHeight = 400;
+	var playerWidth = 20;
+	var playerHeight = 20;
 	var elementsControl = new PegaPega.ElementsControl();
 	var socket = new PegaPega.WebSocket();
 	var draw = new PegaPega.Draw();
@@ -28,7 +30,7 @@ PegaPega.TheGame = function() {
 		for(var i = 0; i < players.length; i++) {
 			var player = players[i].player;
 			elementsControl.addToLIst(player);
-			draw.player(player.name, player.posX, player.posY, player.isCatcher);
+			draw.player(player.name, player.posX, player.posY, playerWidth, playerHeight, player.isCatcher);
 		}
 	}
 

@@ -11,18 +11,26 @@ module PegaPega
 			@posY = Random.new.rand(50..canvasHeight - 50)
 			@speed = 5
 			@catcher = true
+			@canvasWidth = canvasWidth
+			@canvasHeight = canvasHeight
+			@playerWidth = 20
+			@playerHeight = 20
 		end
 
 		def move(direction)
 			case direction
 				when "up"
-					@posY -= 1 * @speed
+					@posY -= @speed
+					@posY = 0 if @posY <= 0
 				when "down"
-					@posY += 1 * @speed
+					@posY += @speed
+					@posY = @canvasHeight - @playerHeight if @posY + @playerHeight >= @canvasHeight
 				when "left"
-					@posX -= 1 * @speed
+					@posX -= @speed
+					@posX = 0 if @posX <= 0
 				when "right"
-					@posX += 1 * @speed
+					@posX += @speed
+					@posX = @canvasWidth - @playerWidth if @posX + @playerWidth >= @canvasWidth
 			end
 		end
 
