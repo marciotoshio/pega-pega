@@ -2,7 +2,7 @@ require "json"
 
 module PegaPega
 	class Player
-		attr_accessor :name, :posX, :posY, :client, :catcher
+		attr_accessor :name, :posX, :posY, :width, :height :client, :catcher
 
 		def initialize(client, name, canvasWidth, canvasHeight)
 			@client = client
@@ -13,8 +13,8 @@ module PegaPega
 			@catcher = true
 			@canvasWidth = canvasWidth
 			@canvasHeight = canvasHeight
-			@playerWidth = 20
-			@playerHeight = 20
+			@width = 20
+			@height = 20
 		end
 
 		def move(direction)
@@ -24,14 +24,26 @@ module PegaPega
 					@posY = 0 if @posY <= 0
 				when "down"
 					@posY += @speed
-					@posY = @canvasHeight - @playerHeight if @posY + @playerHeight >= @canvasHeight
+					@posY = @canvasHeight - @height if @posY + @height >= @canvasHeight
 				when "left"
 					@posX -= @speed
 					@posX = 0 if @posX <= 0
 				when "right"
 					@posX += @speed
-					@posX = @canvasWidth - @playerWidth if @posX + @playerWidth >= @canvasWidth
+					@posX = @canvasWidth - @width if @posX + @width >= @canvasWidth
 			end
+		end
+		
+		def colliding_with(player)
+			 if @posY +  @height < player.posY
+				return false
+			if @posY > player.posY + player.height
+				return false 
+			if @posX + @width < player.posX
+				return false 
+			if @posX > player.posX + player.width
+				return false 
+			return true
 		end
 
 		def to_json(*a)
