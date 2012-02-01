@@ -1,3 +1,4 @@
+require_relative 'helper'
 require_relative 'player'
 
 module PegaPega
@@ -10,19 +11,18 @@ module PegaPega
 
 		def join(client, msg)
 			@players.each { | p | p.catcher = false }
-			player = Player.new client, get_player_name_from_message(msg), @canvasWidth, @canvasHeight
+			player = Player.new client, Helper::get_player_name_from_message(msg), @canvasWidth, @canvasHeight
 			@players << player
 		end
 
 		def move(client, msg)
 			players = @players.select { | p | p.client == client }
-			if players != nil
-				player = players.first
-				player.move get_player_direction_from_message(msg)
-			end
+			return unless players != nil
+			player = players.first
+			player.move Helper::get_player_direction_from_message(msg)
 		end
 
-		def send_players_info()
+		def send_players_info
 			@players.each { | p | p.client.send @players.to_json }
 		end
 
@@ -32,24 +32,16 @@ module PegaPega
 		
 		def check_collision
 			players = @players.select { | p | p.catcher }
-			if players != nil
-				catcher = players.first
-				players.each do | player |
-					if catcher.colliding_with player
-						catcher.catcher = false
-						player.catcher = true
-						break
-					end
+			return unless players != nil
+			the_catcher = players.first
+			@players.each do | player |
+				if the_catcher != player and the_catcher.collide_with player
+					the_catcher.catcher = false
+					player.catcher = true
+					break
 				end
 			end
 		end
-		
-		def get_player_name_from_message(msg)
-			msg[8..-1]
-		end
 
-		def get_player_direction_from_message(msg)
-			msg[8..-1]
-		end
 	end
 end
