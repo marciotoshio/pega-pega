@@ -1,47 +1,52 @@
 <html>
 	<head>
-		<link rel="stylesheet" href="http://twitter.github.com/bootstrap/1.4.0/bootstrap.min.css">
-		<link rel="stylesheet" href="style.css" />
+		<link rel="stylesheet" href="style/bootstrap.min.css">
+		<link rel="stylesheet" href="style/style.css" />
+
+		<title>Pega - Pega </title>
 	</head>
 	<body>
 		<div class="container">
 			<div class="content">
 				
-				<div class="page-header">
+				<header class="page-header">
 					<h1>Pega - Pega</h1>
-				</div>
+				</header>
 			
-				<div class="row">
-					<div class="span12">
+				<section id="startup-screen">
+					<form class="well form-inline">
+						<input type="text" name="player-name" id="player-name" placeholder="your name" class="input-small" /> 
+						<button id="enter-game" class="btn btn-primary"><i class="icon-play-circle icon-white"></i> Enter</button>
+					</form>
+				</section>
 						
-						<section id="startup-screen">
-							<form class="form-stacked">
-								<label for="player-name">Your name:<label/> <input type="text" name="player-name" id="player-name" /> 
-								<div class="actions">
-									<button id="enter-game" class="btn primary">Enter</button>
-								</div>
-							</form>
-						</section>
-						
-						<section id="main-screen" style="display: none;">
-							<canvas id="the-field" width="690" height="400" />
-						</section>
-					
+				<section id="main-screen" style="display: none;">
+					<div class="row">
+						<div class="span9">
+							<canvas id="the-field" width="690" height="400"></canvas>
+							<div class="alert alert-info">
+								Use the arrow keys to move. <div id="info"><span class="square red">Red</span> are the catcher, <span class="square yellow">yellow</span> is safe, <span class="square blue">blue</span> RUN!</div>
+							</div>
+						</div>
+						<div class="span3">
+			
+							<section id="player-list" class="well">
+								<h2>Players</h2>
+								<ul id="the-list" class="unstyled">
+									<li>player 1</li>
+									<li>player 2</li>
+									<li>player 3</li>
+									<li>player 4</li>
+								</ul>
+							</section>
+			
+						</div>
 					</div>
-					<div class="span4">
-					
-						<section id="player-list">
-							<h2>Players</h2>
-							<ul id="the-list">
-								<li>player 1</li>
-								<li>player 2</li>
-								<li>player 3</li>
-								<li>player 4</li>
-							</ul>
-						</section>
-					
-					</div>
-				</div>
+				</section>
+				
+				<footer>
+					<a href="http://tosh.io/twitter">@marciotoshio</a>
+				</footer>
 			</div>
 		</div>
 		

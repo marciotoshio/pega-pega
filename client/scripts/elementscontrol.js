@@ -24,12 +24,19 @@ PegaPega.ElementsControl = function() {
 		var list = document.getElementById('the-list');
 		var item = document.createElement('li');
 		item.innerText = player.name;
-		if(player.isCatcher) item.className = "catcher";
-		if(player.isSafe) item.className = "safe";
+		if(player.isCatcher) item.appendChild(createLabel('important', 'catcher'));
+		if(player.isSafe) item.appendChild(createLabel('warning', 'safe'));
 		list.appendChild(item);
 	}
 	
 	//private
+	function createLabel(type, text) {
+		var label = document.createElement('span');
+		label.className = "label label-" + type;
+		label.innerText = text;
+		return label;
+	}
+
 	function hideStartupShowMain(evt) {
 		evt.preventDefault();
 		hideStartup();
