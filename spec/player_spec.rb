@@ -1,5 +1,9 @@
 require_relative '../server/lib/player'
+#Dir["../server/lib/fields/*.rb"].each {|file| require file }
+require_relative '../server/lib/fields/field'
+
 include PegaPega
+include PegaPega::Fields
 
 describe Player do
 	before(:each) do
@@ -7,8 +11,8 @@ describe Player do
 		@canvasHeight = 400
 		@centerX = @canvasWidth / 2
 		@centerY = @canvasHeight / 2
-    @player = Player.new nil, "player1", @canvasWidth, @canvasHeight
-		@catcher = Player.new nil, "catcher", @canvasWidth, @canvasHeight
+    @player = Player.new nil, "player1", Field.new
+		@catcher = Player.new nil, "catcher", Field.new
   end
 	
 	it "can move up" do
