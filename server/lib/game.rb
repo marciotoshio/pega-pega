@@ -35,7 +35,6 @@ module PegaPega
 			@players.each do | player |
 				break if the_catcher.collide_with player
 			end
-			puts "debug2: #{@players.to_json}" 
 		end
 
 	end
