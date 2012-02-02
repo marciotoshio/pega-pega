@@ -116,4 +116,32 @@ describe Player do
 
 		@catcher.collide_with(@player).should be true
 	end
+
+	it "the catcher becomes safe after caugth a player" do
+		@player.posX = 100
+		@player.posY = 100
+	
+		@catcher.posX = 100
+		@catcher.posY = 119
+
+		@catcher.collide_with(@player)
+
+		@catcher.is_safe?.should be true
+		@player.is_the_catcher?.should be true
+	end
+
+	it "after 3 seconds the player is not safe anymore" do
+		@player.posX = 100
+		@player.posY = 100
+	
+		@catcher.posX = 100
+		@catcher.posY = 119
+
+		@catcher.collide_with(@player)
+
+		sleep 3.1
+
+		@catcher.is_safe?.should be false
+		@player.is_the_catcher?.should be true
+	end
 end

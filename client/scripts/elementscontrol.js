@@ -24,9 +24,8 @@ PegaPega.ElementsControl = function() {
 		var list = document.getElementById('the-list');
 		var item = document.createElement('li');
 		item.innerText = player.name;
-		if(player.isCatcher) {
-			item.className = "catcher";
-		}
+		if(player.isCatcher) item.className = "catcher";
+		if(player.isSafe) item.className = "safe";
 		list.appendChild(item);
 	}
 	

@@ -3,13 +3,16 @@ var PegaPega = PegaPega || {};
 PegaPega.Draw = function() {
 	var context = document.getElementById('the-field').getContext('2d');
 
-	this.player = function(name, x, y, width, height, isCatcher) {
+	this.player = function(player) {
+		var color = '#8ED6FF';
+		if(player.isCatcher) color = 'red';
+		if(player.isSafe) color = 'yellow';
 		context.beginPath();
-		context.rect(x, y, width, height);
-		context.fillStyle = isCatcher ? "#FF0000" : "#8ED6FF";
+		context.rect(player.posX, player.posY, player.width, player.height);
+		context.fillStyle =  color;
 		context.fill();
 		context.lineWidth = 3;
-		context.strokeStyle = "black";
+		context.strokeStyle = 'black';
 		context.stroke();
 	}
 

@@ -14,7 +14,7 @@ module PegaPega
 			@width = 20
 			@height = 20
 			@speed = 5
-			@catcher = true			
+			@catcher = true
 		end
 
 		def move(direction)
@@ -35,14 +35,37 @@ module PegaPega
 		end
 
 		def collide_with(player)
-			return ((self.left >= player.left && self.left <= player.right) or (player.left >= self.left && player.left <= self.right)) &&
+			return if player.is_safe? or self == player
+
+			collided = ((self.left >= player.left && self.left <= player.right) or (player.left >= self.left && player.left <= self.right)) &&
              ((self.top >= player.top && self.top <= player.bottom) or (player.top >= self.top && player.top <= self.bottom))
+
+			if collided
+				self.safe
+				player.becomes_the_catcher 
+			end
+
+			collided
 		end
 
-		def to_json(*a)
-		  { "player" => { name: @name, posX: @posX, posY: @posY, isCatcher: @catcher } }.to_json(*a)
+		def is_the_catcher?
+			@catcher
 		end
-		
+
+		def becomes_the_catcher
+			@catcher = true
+		end
+
+		def safe
+			@safe_time = Time.now
+			@catcher = false
+		end
+
+		def is_safe?
+			return false unless @safe_time
+			Time.now < @safe_time + 3
+		end
+
 		def left
 			@posX
 		end
@@ -57,6 +80,10 @@ module PegaPega
 
 		def bottom
 			@posY + @height
+		end
+
+		def to_json(*a)
+		  { "player" => { name: @name, posX: @posX, posY: @posY, width: @width, height: @height, isCatcher: is_the_catcher?, isSafe: is_safe? } }.to_json(*a)
 		end
 
 	end

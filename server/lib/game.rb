@@ -10,15 +10,14 @@ module PegaPega
 		end
 
 		def join(client, msg)
-			@players.each { | p | p.catcher = false }
+			@players.each { | p | p.safe }
 			player = Player.new client, Helper::get_player_name_from_message(msg), @canvasWidth, @canvasHeight
 			@players << player
 		end
 
 		def move(client, msg)
-			players = @players.select { | p | p.client == client }
-			return unless players != nil
-			player = players.first
+			player = @players.select { | p | p.client == client }.first
+			return unless player != nil
 			player.move Helper::get_player_direction_from_message(msg)
 		end
 
@@ -31,16 +30,12 @@ module PegaPega
 		end
 		
 		def check_collision
-			players = @players.select { | p | p.catcher }
-			return unless players != nil
-			the_catcher = players.first
+			the_catcher = @players.select { | p | p.is_the_catcher? }.first
+			return unless the_catcher != nil
 			@players.each do | player |
-				if the_catcher != player and the_catcher.collide_with player
-					the_catcher.catcher = false
-					player.catcher = true
-					break
-				end
+				break if the_catcher.collide_with player
 			end
+			puts "debug2: #{@players.to_json}" 
 		end
 
 	end

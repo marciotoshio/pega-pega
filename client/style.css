@@ -12,3 +12,8 @@ canvas {
 	background-color: red;
 	color: white;
 }
+
+#the-list .safe {
+	background-color: yellow;
+	color: black;
+}
