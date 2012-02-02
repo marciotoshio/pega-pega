@@ -74,7 +74,7 @@ describe Player do
 		@catcher.posX = 100
 		@catcher.posY = 100
 
-		@catcher.collide_with(@player).should be false
+		@catcher.caught?(@player).should be false
 	end
 
 	it "caught a player from left side" do
@@ -84,7 +84,7 @@ describe Player do
 		@catcher.posX = 81
 		@catcher.posY = 100
 
-		@catcher.collide_with(@player).should be true
+		@catcher.caught?(@player).should be true
 	end
 
 	it "caught a player from right side" do
@@ -94,7 +94,7 @@ describe Player do
 		@catcher.posX = 119
 		@catcher.posY = 100
 
-		@catcher.collide_with(@player).should be true
+		@catcher.caught?(@player).should be true
 	end
 
 	it "caught a player from top" do
@@ -104,7 +104,7 @@ describe Player do
 		@catcher.posX = 100
 		@catcher.posY = 81
 
-		@catcher.collide_with(@player).should be true
+		@catcher.caught?(@player).should be true
 	end
 
 	it "caught a player from bottom" do
@@ -114,7 +114,7 @@ describe Player do
 		@catcher.posX = 100
 		@catcher.posY = 119
 
-		@catcher.collide_with(@player).should be true
+		@catcher.caught?(@player).should be true
 	end
 
 	it "the catcher becomes safe after caugth a player" do
@@ -124,7 +124,7 @@ describe Player do
 		@catcher.posX = 100
 		@catcher.posY = 119
 
-		@catcher.collide_with(@player)
+		@catcher.caught?(@player)
 
 		@catcher.is_safe?.should be true
 		@player.is_the_catcher?.should be true
@@ -137,7 +137,7 @@ describe Player do
 		@catcher.posX = 100
 		@catcher.posY = 119
 
-		@catcher.collide_with(@player)
+		@catcher.caught?(@player)
 
 		sleep 3.1
 

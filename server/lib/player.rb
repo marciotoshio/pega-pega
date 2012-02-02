@@ -34,7 +34,7 @@ module PegaPega
 			end
 		end
 
-		def collide_with(player)
+		def caught?(player)
 			return if player.is_safe? or self == player
 
 			collided = ((self.left >= player.left && self.left <= player.right) or (player.left >= self.left && player.left <= self.right)) &&

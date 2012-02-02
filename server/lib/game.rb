@@ -33,7 +33,7 @@ module PegaPega
 			the_catcher = @players.select { | p | p.is_the_catcher? }.first
 			return unless the_catcher != nil
 			@players.each do | player |
-				break if the_catcher.collide_with player
+				break if the_catcher.caught? player
 			end
 		end
 
