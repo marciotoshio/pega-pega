@@ -18,6 +18,7 @@ module PegaPega
 			
 			client.onopen do
 				debug_message "client connected: " + client.to_s
+				game.send_field client
 			end
 		  
 			client.onmessage do |msg|

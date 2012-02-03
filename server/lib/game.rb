@@ -24,6 +24,10 @@ module PegaPega
 			@players.each { | p | p.client.send @players.to_json }
 		end
 
+		def send_field(client)
+    	client.send @field.to_json
+		end
+
 		def remove_player(client)
 			@players.each { | p | @players.delete p if p.client == client }
 		end

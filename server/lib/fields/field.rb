@@ -1,3 +1,4 @@
+require 'json'
 require 'matrix'
 
 module PegaPega::Fields
@@ -38,6 +39,10 @@ module PegaPega::Fields
 
 		def get_field
 			@field
+		end
+
+		 def to_json(*a)
+		  { "field" => @field.to_a }.to_json(*a)
 		end
 	end
 end

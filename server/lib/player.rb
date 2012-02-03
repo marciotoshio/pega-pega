@@ -15,9 +15,12 @@ module PegaPega
 			@field = field
 			position = Struct.new :x, :y
 			@position = position.new Random.new.rand(50..field.width - 50), Random.new.rand(50..field.height - 50)
+			@last_position = position.new @position.x, @position.y
 		end
 
 		def move(direction)
+			@last_position.x = @position.x
+			@last_position.y = @position.y
 			case direction
 				when "up"
 					@position.y -= @speed
@@ -124,7 +127,7 @@ module PegaPega
 		end
 
 		def to_json(*a)
-		  { "player" => { name: @name, posX: @position.x, posY: @position.y, width: @width, height: @height, isCatcher: is_the_catcher?, isSafe: is_safe? } }.to_json(*a)
+		  { "player" => { name: @name, posX: @position.x, posY: @position.y, last_posX: @last_position.x, last_posY: @last_position.y, isCatcher: is_the_catcher?, isSafe: is_safe? } }.to_json(*a)
 		end
 
 	end
