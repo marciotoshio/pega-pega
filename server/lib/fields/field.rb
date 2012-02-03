@@ -2,7 +2,7 @@ require 'matrix'
 
 module PegaPega::Fields
 	class Field
-		attr_accessor :width, :height
+		attr_reader :width, :height
 
 		def initialize
 			@field = Matrix[

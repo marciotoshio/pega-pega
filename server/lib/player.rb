@@ -2,7 +2,8 @@ require 'json'
 
 module PegaPega
 	class Player
-		attr_accessor :client, :posX, :posY, :width, :height
+		attr_accessor :client, :posX, :posY
+		attr_reader :width, :height
 
 		def initialize(client, name, field)
 			@client = client
