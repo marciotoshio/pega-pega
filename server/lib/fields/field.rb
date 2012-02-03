@@ -3,7 +3,7 @@ module PegaPega::Fields
 		attr_accessor :width, :height
 
 		def initialize
-      @width = 690
+      @width = 680
 			@height = 400
 		end
 	end
