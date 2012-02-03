@@ -7,12 +7,11 @@ include PegaPega::Fields
 
 describe Player do
 	before(:each) do
-		@canvasWidth = 690
-		@canvasHeight = 400
-		@centerX = @canvasWidth / 2
-		@centerY = @canvasHeight / 2
-    @player = Player.new nil, "player1", Field.new
-		@catcher = Player.new nil, "catcher", Field.new
+		@field = Field.new
+		@centerX = @field.width / 2
+		@centerY = @field.height / 2
+    @player = Player.new nil, "player1", @field
+		@catcher = Player.new nil, "catcher", @field
   end
 	
 	it "can move up" do
@@ -52,9 +51,9 @@ describe Player do
 
 	it "cannot leave bottom bound" do
 		@player.posX = @centerX
-		@player.posY = @canvasHeight
+		@player.posY = @field.height
 		@player.move("down")
-		@player.posY.should == @canvasHeight - @player.height
+		@player.posY.should == @field.height - @player.height
 	end
 
 	it "cannot leave left bound" do
@@ -65,10 +64,10 @@ describe Player do
 	end
 
 	it "cannot leave right bound" do
-		@player.posX = @canvasWidth
+		@player.posX = @field.width
 		@player.posY = @centerY
 		@player.move("right")
-		@player.posX.should == @canvasWidth - @player.width
+		@player.posX.should == @field.width - @player.width
 	end
 
 	it "not caught a player" do

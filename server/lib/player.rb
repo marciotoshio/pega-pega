@@ -2,7 +2,7 @@ require 'json'
 
 module PegaPega
 	class Player
-		attr_accessor :name, :posX, :posY, :width, :height, :client, :catcher
+		attr_accessor :client, :posX, :posY, :width, :height
 
 		def initialize(client, name, field)
 			@client = client
@@ -20,17 +20,21 @@ module PegaPega
 			case direction
 				when "up"
 					@posY -= @speed
-					@posY = 0 if @posY <= 0
 				when "down"
 					@posY += @speed
-					@posY = @field.height - @height if @posY + @height >= @field.height
 				when "left"
 					@posX -= @speed
-					@posX = 0 if @posX <= 0
 				when "right"
 					@posX += @speed
-					@posX = @field.width - @width if @posX + @width >= @field.width
 			end
+			check_out_of_bounds
+		end
+
+		def check_out_of_bounds
+			@posY = 0 if top <= 0
+			@posY = @field.height - @height if bottom >= @field.height
+			@posX = 0 if left <= 0
+			@posX = @field.width - @width if right >= @field.width
 		end
 
 		def caught?(player)

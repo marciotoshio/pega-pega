@@ -3,15 +3,14 @@ require_relative 'player'
 
 module PegaPega
 	class Game
-		def initialize(canvasWidth, canvasHeight)
+		def initialize(field)
 			@players = []
-			@canvasWidth = canvasWidth
-			@canvasHeight = canvasHeight
+			@field = field
 		end
 
 		def join(client, msg)
 			@players.each { | p | p.safe }
-			player = Player.new client, Helper::get_player_name_from_message(msg), @canvasWidth, @canvasHeight
+			player = Player.new client, Helper::get_player_name_from_message(msg), @field
 			@players << player
 		end
 
