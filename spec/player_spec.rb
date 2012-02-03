@@ -1,5 +1,5 @@
+require 'spec_helper.rb'
 require_relative '../server/lib/player'
-#Dir["../server/lib/fields/*.rb"].each {|file| require file }
 require_relative '../server/lib/fields/field'
 
 include PegaPega
@@ -133,7 +133,7 @@ describe Player do
 		@player.is_the_catcher?.should be true
 	end
 
-	it "after 3 seconds the player is not safe anymore" do
+	it "after 3 seconds the player is not safe anymore", slow: true do
 		@player.posX = 100
 		@player.posY = 100
 	

@@ -1,3 +1,4 @@
+require 'spec_helper.rb'
 require_relative '../server/lib/helper'
 include PegaPega
 
