@@ -2,7 +2,7 @@ var PegaPega = PegaPega || {};
 
 PegaPega.TheGame = function() {
 
-	var host = "192.168.1.2"; // change this to the address of your server
+	var host = "bandolim"; // change this to the address of your server
 	var canvasWidth = 680;
 	var canvasHeight = 400;
 	var elementsControl = new PegaPega.ElementsControl();
@@ -16,19 +16,24 @@ PegaPega.TheGame = function() {
 	//private
 	function initCallback(playerName) {
 		socket.connect(host, onMessage, function() {
-			socket.sendMessage("[join]::" + playerName);
 			window.addEventListener('keydown', onKeyDown, true);
 		});
 	}
 
 	function onMessage(msg) {
-		var players = JSON.parse(msg);
-		draw.clear(canvasWidth, canvasHeight);
-		elementsControl.clearPlayerList();
-		for(var i = 0; i < players.length; i++) {
-			var player = players[i].player;
-			elementsControl.addToLIst(player);
-			draw.player(player);
+		var result = JSON.parse(msg);
+		
+		if(result.field) {
+			draw.field(result.field);
+			socket.sendMessage("[join]::" + 'teste');
+		}
+		else {
+			elementsControl.clearPlayerList();
+			for(var i = 0; i < result.length; i++) {
+				var playerInfo = result[i].player;
+				elementsControl.addToLIst(playerInfo);
+				draw.player(new PegaPega.Player(playerInfo));
+			}
 		}
 	}
 
