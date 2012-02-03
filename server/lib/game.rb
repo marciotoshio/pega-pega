@@ -3,15 +3,14 @@ require_relative 'player'
 
 module PegaPega
 	class Game
-		def initialize(canvasWidth, canvasHeight)
+		def initialize(field)
 			@players = []
-			@canvasWidth = canvasWidth
-			@canvasHeight = canvasHeight
+			@field = field
 		end
 
 		def join(client, msg)
 			@players.each { | p | p.safe }
-			player = Player.new client, Helper::get_player_name_from_message(msg), @canvasWidth, @canvasHeight
+			player = Player.new client, Helper::get_player_name_from_message(msg), @field
 			@players << player
 		end
 
@@ -29,11 +28,11 @@ module PegaPega
 			@players.each { | p | @players.delete p if p.client == client }
 		end
 		
-		def check_collision
+		def check_if_catcher_caught_player
 			the_catcher = @players.select { | p | p.is_the_catcher? }.first
 			return unless the_catcher != nil
 			@players.each do | player |
-				break if the_catcher.collide_with player
+				break if the_catcher.caught? player
 			end
 		end
 
