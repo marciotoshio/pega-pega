@@ -21,19 +21,30 @@ module PegaPega
 			case direction
 				when "up"
 					@position.y -= @speed
+					check_hit_wall "up"
 				when "down"
 					@position.y += @speed
+					check_hit_wall "down"
 				when "left"
 					@position.x -= @speed
+					check_hit_wall "left"
 				when "right"
 					@position.x += @speed
+					check_hit_wall "right"
 			end
-			hit_wall
 		end
 
-		def hit_wall
-			@position.x = 999 if hit_wall_right?
-			@position.x = 999 if hit_wall_left?
+		def check_hit_wall(direction)
+			case direction
+				when "up"
+					@position.y = ((top / @height) * @height) + @height if hit_wall_top?
+				when "down"
+          @position.y = ((bottom / @height) * @height) - @height if hit_wall_bottom?
+				when "left"
+					@position.x = ((left / @width) * @width) + @width if hit_wall_left?
+				when "right"
+					@position.x = ((right / @width) * @width) - @width if hit_wall_right?
+			end
 		end
 
 		def hit_wall_right?
@@ -48,6 +59,20 @@ module PegaPega
 			y_top = top / @height
 			y_bottom = bottom / @height
 			@field.has_wall?(x, y_top) or @field.has_wall?(x, y_bottom)
+		end 
+
+		def hit_wall_top?
+			x_left = left / @width
+			x_right = right / @width
+			y = top / @height
+			@field.has_wall?(x_left, y) or @field.has_wall?(x_right, y)
+		end 
+		
+		 def hit_wall_bottom?
+			x_left = left / @width
+			x_right = right / @width
+			y = bottom / @height
+			@field.has_wall?(x_left, y) or @field.has_wall?(x_right, y)
 		end
 
 		def caught?(player)

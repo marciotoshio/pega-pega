@@ -54,9 +54,9 @@ describe Player do
 
 	it "cannot leave bottom bound" do
 		@player.position.x = @centerX
-		@player.position.y = 480
+		@player.position.y = 360
 		@player.move("down")
-		@player.position.y.should == 480
+		@player.position.y.should == 360
 	end
 
 	it "cannot leave left bound" do
@@ -67,10 +67,10 @@ describe Player do
 	end
 
 	it "cannot leave right bound" do
-		@player.position.x = 657
+		@player.position.x = 640
 		@player.position.y = @centerY
 		@player.move("right")
-		@player.position.x.should == 660
+		@player.position.x.should == 640
 	end
 
 	it "not caught a player" do
@@ -160,10 +160,27 @@ describe Player do
 	end
 
 	it "cannot move left if there's a wall" do
-		#there's a wall in 6,5
-		@player.position.x = 123
-		@player.position.y = 104
+		#there's a wall in 2,1
+		@player.position.x = 60
+		@player.position.y = 20
 		@player.move('left')
-		@player.position.x.should == 120
+		@player.position.x.should == 60
 	end
-end
+
+	it "cannot move up if there's a wall" do
+		#there's a wall in 2,2
+
+		@player.position.x = 40
+		@player.position.y = 60
+		@player.move('up')
+		@player.position.y.should == 60
+	end
+
+	it "cannot move down if there's a wall" do
+		#there's a wall in 2,10
+		@player.position.x = 40
+		@player.position.y = 180
+		@player.move('down')
+		@player.position.y.should == 180
+	end
+end                   
