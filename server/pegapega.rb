@@ -23,7 +23,7 @@ module PegaPega
 			client.onmessage do |msg|
 				game.join(client, msg) if msg.include? "[join]"
 				game.move(client, msg) if msg.include? "[move]"
-				game.check_collision
+				game.check_if_catcher_caught_player
 				game.send_players_info
 				debug_message "message received: " + msg
 			end

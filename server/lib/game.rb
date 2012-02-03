@@ -28,7 +28,7 @@ module PegaPega
 			@players.each { | p | @players.delete p if p.client == client }
 		end
 		
-		def check_collision
+		def check_if_catcher_caught_player
 			the_catcher = @players.select { | p | p.is_the_catcher? }.first
 			return unless the_catcher != nil
 			@players.each do | player |
