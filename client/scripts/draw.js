@@ -2,32 +2,36 @@ var PegaPega = PegaPega || {};
 
 PegaPega.Draw = function() {
 	var context = document.getElementById('the-field').getContext('2d');
+	var sprite = new Image();
 
 	this.player = function(player) {
-		drawFloor(player.last_posX / 20, player.last_posY / 20);
+		this.field(f);
 		drawBlock(player.posX, player.posY, player.width, player.height, player.get_color(), player.lineWidth, player.strokeStyle);
 	}
+
+	this.load = function(callback) {
+		sprite.onload = callback;
+		sprite.src = 'img/sprite.png';
+	}
 	
+	var f; 
 	this.field = function(field) {
+		f = field;
 		for(var y = 0; y < field.length; y++)
 		{
 			for(var x = 0; x < field[y].length; x++) {
 				if(field[y][x] == 0) {
-					drawFloor(x, y);
+					drawImage(20, 0, x, y);
 				}
 				else {
-					drawWall(x, y);
+					drawImage(0, 0, x, y);
 				}
 			}
 		}
 	}
 	
-	function drawFloor(x, y) {
-		drawBlock(x*20, y*20, 20, 20, '#AAFFAA', 0, 'none');
-	}
-	
-	function drawWall(x, y) {
-		drawBlock(x*20, y*20, 20, 20, '#CCCCCC', 0, 'none');
+	function drawImage(sx, sy, dx, dy) {
+		context.drawImage(sprite, sx, sy, 20, 20, dx*20, dy*20, 20, 20);
 	}
 	
 	function drawBlock(x, y, w, h, color, lineWidth, strokeStyle) {
