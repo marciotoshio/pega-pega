@@ -1,7 +1,7 @@
 var PegaPega = PegaPega || {};
 
 PegaPega.Player = function(playerInfo) {
-	
+
 	this.get_color = function() {
 		var color = '#8ED6FF';
 		if(playerInfo.isCatcher) color = 'red';

@@ -20,16 +20,19 @@ PegaPega.TheGame = function() {
 		});
 	}
 
+	var theField;
 	function onMessage(msg) {
 		var result = JSON.parse(msg);
 		
 		if(result.field) {
+			theField = result.field;
 			draw.load(function() {
-				draw.field(result.field);
+				draw.field(theField);
 				socket.sendMessage("[join]::" + 'teste');
 			});
 		}
 		else {
+			draw.field(theField);
 			elementsControl.clearPlayerList();
 			for(var i = 0; i < result.length; i++) {
 				var playerInfo = result[i].player;

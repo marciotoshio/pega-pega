@@ -5,7 +5,6 @@ PegaPega.Draw = function() {
 	var sprite = new Image();
 
 	this.player = function(player) {
-		this.field(f);
 		drawBlock(player.posX, player.posY, player.width, player.height, player.get_color(), player.lineWidth, player.strokeStyle);
 	}
 
@@ -14,9 +13,7 @@ PegaPega.Draw = function() {
 		sprite.src = 'img/sprite.png';
 	}
 	
-	var f; 
 	this.field = function(field) {
-		f = field;
 		for(var y = 0; y < field.length; y++)
 		{
 			for(var x = 0; x < field[y].length; x++) {
@@ -39,10 +36,8 @@ PegaPega.Draw = function() {
 		context.rect(x, y, w, h);
 		context.fillStyle =  color;
 		context.fill();
-		if(lineWidth && strokeStyle) {
-			context.lineWidth = lineWidth;
-			context.strokeStyle = strokeStyle;
-			context.stroke();
-		}
+		context.lineWidth = lineWidth;
+		context.strokeStyle = strokeStyle;
+		context.stroke();
 	}
 }
