@@ -2,7 +2,7 @@ require 'json'
 
 module PegaPega
 	class Player
-		attr_accessor :client, :position
+		attr_accessor :client, :position, :frame
 		attr_reader :width, :height
 
 		def initialize(client, name, field)
@@ -15,12 +15,11 @@ module PegaPega
 			@field = field
 			position = Struct.new :x, :y
 			@position = position.new Random.new.rand(50..field.width - 50), Random.new.rand(50..field.height - 50)
-			@last_position = position.new @position.x, @position.y
+			@direction = "up"
+			@frame = 0
 		end
 
 		def move(direction)
-			@last_position.x = @position.x
-			@last_position.y = @position.y
 			case direction
 				when "up"
 					@position.y -= @speed
@@ -35,6 +34,13 @@ module PegaPega
 					@position.x += @speed
 					check_hit_wall "right"
 			end
+			@direction = direction
+			set_frame
+		end
+
+		def set_frame
+    	@frame += 1
+			@frame = 0 if @frame == 3
 		end
 
 		def check_hit_wall(direction)
@@ -127,7 +133,7 @@ module PegaPega
 		end
 
 		def to_json(*a)
-		  { "player" => { name: @name, posX: @position.x, posY: @position.y, last_posX: @last_position.x, last_posY: @last_position.y, isCatcher: is_the_catcher?, isSafe: is_safe? } }.to_json(*a)
+		  { "player" => { name: @name, posX: @position.x, posY: @position.y, direction: @direction, frame: @frame, isCatcher: is_the_catcher?, isSafe: is_safe? } }.to_json(*a)
 		end
 
 	end

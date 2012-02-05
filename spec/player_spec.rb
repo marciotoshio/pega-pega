@@ -183,4 +183,22 @@ describe Player do
 		@player.move('down')
 		@player.position.y.should == 239
 	end
+
+	it "each movent adds a frame" do
+		@player.frame.should == 0
+		@player.move('down')
+		@player.frame.should == 1
+		@player.move('down')
+		@player.frame.should == 2
+	end
+
+	it "after frame 2 back to frame 0" do
+    @player.frame.should == 0
+		@player.move('down')
+		@player.frame.should == 1
+		@player.move('down')
+		@player.frame.should == 2
+ 		@player.move('down')
+		@player.frame.should == 0
+	end
 end                   
