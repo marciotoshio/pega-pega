@@ -4,7 +4,7 @@ PegaPega.TheGame = function() {
 
 	var host = "192.168.1.2"; // change this to the address of your server
 	var canvasWidth = 690;
-	var canvasHeight = 400;
+	var canvasHeight = 390;
 	var elementsControl = new PegaPega.ElementsControl();
 	var socket = new PegaPega.WebSocket();
 	var draw = new PegaPega.Draw();
