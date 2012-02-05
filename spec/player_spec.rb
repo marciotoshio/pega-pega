@@ -13,8 +13,8 @@ describe Player do
     @player = Player.new nil, "player1", @field
 		@catcher = Player.new nil, "catcher", @field
 		@speed = 5
-		@width = 20
-		@height = 20
+		@width = 30
+		@height = 30
   end
 	
 	it "can move up" do
