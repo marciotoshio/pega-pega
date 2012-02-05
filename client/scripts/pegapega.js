@@ -32,7 +32,6 @@ PegaPega.TheGame = function() {
 			});
 		}
 		else {
-//draw.field(theField);
 			elementsControl.clearPlayerList();
 			for(var i = 0; i < result.length; i++) {
 				var playerInfo = result[i].player;

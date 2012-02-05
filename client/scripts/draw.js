@@ -19,16 +19,20 @@ PegaPega.Draw = function() {
 		{
 			for(var x = 0; x < field[y].length; x++) {
 				if(field[y][x] == 0) {
-					drawImage(1, 12, x, y);
+					drawImage({x:1,y:12}, {x:x,y:y});
 				}
 				else {
-					drawImage(0, 12, x, y);
+					drawImage({x:0,y:12},{x:x,y:y});
 				}
 			}
 		}
 	}
+
+	this.clearAround = function(subject) {
+		
+	}
 	
-	function drawImage(frameX, frameY, dx, dy) {
-		context.drawImage(sprite, frameX*blockSize, frameY*blockSize, blockSize, blockSize, dx*blockSize, dy*blockSize, blockSize, blockSize);
+	function drawImage(frame, position) {
+		context.drawImage(sprite, frame.x*blockSize, frame.y*blockSize, blockSize, blockSize, position.x*blockSize, position.y*blockSize, blockSize, blockSize);
 	}
 }
