@@ -29,9 +29,21 @@ PegaPega.Draw = function() {
 	}
 
 	this.clearAround = function(subject) {
-		
+ 	 	drawImage({x:1,y:12}, {x: Math.round(subject.getPosition().x), y: Math.round(subject.getPosition().y)});  		
+		drawImage({x:1,y:12}, {x: Math.round(subject.getPosition().x - 1), y: Math.round(subject.getPosition().y)});
+		drawImage({x:1,y:12}, {x: Math.round(subject.getPosition().x + 1), y: Math.round(subject.getPosition().y)});
+		drawImage({x:1,y:12}, {x: Math.round(subject.getPosition().x), y: Math.round(subject.getPosition().y - 1)});
+		drawImage({x:1,y:12}, {x: Math.round(subject.getPosition().x), y: Math.round(subject.getPosition().y + 1)}); 
+		drawImage({x:1,y:12}, {x: Math.round(subject.getPosition().x - 1), y: Math.round(subject.getPosition().y - 1)});
+  	drawImage({x:1,y:12}, {x: Math.round(subject.getPosition().x - 1), y: Math.round(subject.getPosition().y + 1)}); 
+    drawImage({x:1,y:12}, {x: Math.round(subject.getPosition().x + 1), y: Math.round(subject.getPosition().y - 1)}); 
+    drawImage({x:1,y:12}, {x: Math.round(subject.getPosition().x + 1), y: Math.round(subject.getPosition().y + 1)});   
 	}
 	
+  function getAdjacent(x, y) {
+	
+	}
+
 	function drawImage(frame, position) {
 		context.drawImage(sprite, frame.x*blockSize, frame.y*blockSize, blockSize, blockSize, position.x*blockSize, position.y*blockSize, blockSize, blockSize);
 	}

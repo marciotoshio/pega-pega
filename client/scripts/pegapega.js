@@ -32,11 +32,13 @@ PegaPega.TheGame = function() {
 			});
 		}
 		else {
-			elementsControl.clearPlayerList();
+		 	elementsControl.clearPlayerList();
 			for(var i = 0; i < result.length; i++) {
 				var playerInfo = result[i].player;
 				elementsControl.addToLIst(playerInfo);
-				draw.player(new PegaPega.Player(playerInfo));
+				var player = new PegaPega.Player(playerInfo);
+				draw.clearAround(player);
+				draw.player(player);
 			}
 		}
 	}

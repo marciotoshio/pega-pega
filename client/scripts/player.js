@@ -1,15 +1,14 @@
 var PegaPega = PegaPega || {};
 
 PegaPega.Player = function(playerInfo) {
-	this.width = 30;
-	this.height = 30;
+	this.dimension = {width: 30, height: 30};
 
 	this.draw = function(callback) {
-		callback(getFrame(), getPosition(this.width, this.height));
+		callback(getFrame(), this.getPosition());
 	}
 
-	function getPosition(w, h) {
-		return {x: playerInfo.posX / w, y: playerInfo.posY / h};
+	this.getPosition = function() {
+		return {x: playerInfo.posX / this.dimension.width, y: playerInfo.posY / this.dimension.height};
 	}
 
 	function getFrame() {
