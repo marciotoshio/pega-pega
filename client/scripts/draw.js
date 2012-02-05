@@ -1,11 +1,12 @@
 var PegaPega = PegaPega || {};
 
 PegaPega.Draw = function() {
+	var blockSize = 30;
 	var context = document.getElementById('the-field').getContext('2d');
 	var sprite = new Image();
 
 	this.player = function(player) {
-		drawBlock(player.posX, player.posY, player.width, player.height, player.get_color(), player.lineWidth, player.strokeStyle);
+		player.draw(drawImage);
 	}
 
 	this.load = function(callback) {
@@ -27,17 +28,7 @@ PegaPega.Draw = function() {
 		}
 	}
 	
-	function drawImage(sx, sy, dx, dy) {
-		context.drawImage(sprite, sx*30, sy*30, 30, 30, dx*30, dy*30, 30, 30);
-	}
-	
-	function drawBlock(x, y, w, h, color, lineWidth, strokeStyle) {
-		context.beginPath();
-		context.rect(x, y, w, h);
-		context.fillStyle =  color;
-		context.fill();
-		context.lineWidth = lineWidth;
-		context.strokeStyle = strokeStyle;
-		context.stroke();
+	function drawImage(frameX, frameY, dx, dy) {
+		context.drawImage(sprite, frameX*blockSize, frameY*blockSize, blockSize, blockSize, dx*blockSize, dy*blockSize, blockSize, blockSize);
 	}
 }

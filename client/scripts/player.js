@@ -1,20 +1,29 @@
 var PegaPega = PegaPega || {};
 
 PegaPega.Player = function(playerInfo) {
-
-	this.get_color = function() {
-		var color = '#8ED6FF';
-		if(playerInfo.isCatcher) color = 'red';
-		if(playerInfo.isSafe) color = 'yellow';
-		return color;
-	}
-	
 	this.width = 30;
 	this.height = 30;
-	this.posX = playerInfo.posX;
-	this.posY = playerInfo.posY;
-	this.last_posX = playerInfo.last_posX;
-	this.last_posY = playerInfo.last_posY;
-	this.lineWidth = 3;
-	this.strokeStyle = 'black';
+
+	this.draw = function(callback) {
+		callback(getFrameY(), getFrameX(), playerInfo.posX / this.width, playerInfo.posY / this.height);
+	}
+
+	function getFrameX() {
+		switch(playerInfo.direction) {
+			case 'down':  return 0 + playerStatus();
+			case 'left':  return 1 + playerStatus();
+			case 'right': return 2 + playerStatus();
+			case 'up':    return 3 + playerStatus();
+		}
+	}
+
+	function playerStatus() {
+		if(playerInfo.isCatcher) return 0;
+		if(playerInfo.isSafe)    return 4;
+		return 8;
+	}
+
+	function getFrameY() {
+		return playerInfo.frame;
+	}
 }
