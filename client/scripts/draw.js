@@ -18,17 +18,17 @@ PegaPega.Draw = function() {
 		{
 			for(var x = 0; x < field[y].length; x++) {
 				if(field[y][x] == 0) {
-					drawImage(20, 0, x, y);
+					drawImage(1, 12, x, y);
 				}
 				else {
-					drawImage(0, 0, x, y);
+					drawImage(0, 12, x, y);
 				}
 			}
 		}
 	}
 	
 	function drawImage(sx, sy, dx, dy) {
-		context.drawImage(sprite, sx, sy, 20, 20, dx*20, dy*20, 20, 20);
+		context.drawImage(sprite, sx*30, sy*30, 30, 30, dx*30, dy*30, 30, 30);
 	}
 	
 	function drawBlock(x, y, w, h, color, lineWidth, strokeStyle) {

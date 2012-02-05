@@ -9,8 +9,8 @@ PegaPega.Player = function(playerInfo) {
 		return color;
 	}
 	
-	this.width = 20;
-	this.height = 20;
+	this.width = 30;
+	this.height = 30;
 	this.posX = playerInfo.posX;
 	this.posY = playerInfo.posY;
 	this.last_posX = playerInfo.last_posX;

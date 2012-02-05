@@ -6,8 +6,8 @@ module PegaPega
 		attr_reader :width, :height
 
 		def initialize(client, name, field)
-			@width = 20
-			@height = 20
+			@width = 30
+			@height = 30
 			@speed = 5
 			@catcher = true
 			@client = client
