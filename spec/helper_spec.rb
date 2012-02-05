@@ -10,6 +10,6 @@ describe Helper do
 
 	it "gets the direction from message" do
 		direction = Helper::get_player_direction_from_message "[move]::up"
-		direction.should == "up"
+		direction.should == :up
 	end
 end

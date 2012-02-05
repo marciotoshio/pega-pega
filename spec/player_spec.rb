@@ -20,56 +20,56 @@ describe Player do
 	it "can move up" do
 		@player.position.x = @centerX
 		@player.position.y = @centerY
-		@player.move("up")
+		@player.move(:up)
 		@player.position.y.should == @centerY - @speed
 	end
 
 	it "can move down" do
 		@player.position.x = @centerX
 		@player.position.y = @centerY
-		@player.move("down")
+		@player.move(:down)
 		@player.position.y.should == @centerY + @speed
 	end
 
 	it "can move left" do
 		@player.position.x = @centerX
 		@player.position.y = @centerY
-		@player.move("left")
+		@player.move(:left)
 		@player.position.x.should == @centerX - @speed
 	end
 
 	it "can move right" do
 		@player.position.x = @centerX
 		@player.position.y = @centerY
-		@player.move("right")
+		@player.move(:right)
 		@player.position.x.should == @centerX + @speed
 	end
 
 	it "cannot leave top bound" do
 		@player.position.x = @centerX
 		@player.position.y = 30
-		@player.move("up")
+		@player.move(:up)
 		@player.position.y.should == 31
 	end
 
 	it "cannot leave bottom bound" do
 		@player.position.x = @centerX
 		@player.position.y = 330
-		@player.move("down")
+		@player.move(:down)
 		@player.position.y.should == 329
 	end
 
 	it "cannot leave left bound" do
 		@player.position.x = 30
 		@player.position.y = @centerY
-		@player.move("left")
+		@player.move(:left)
 		@player.position.x.should == 31
 	end
 
 	it "cannot leave right bound" do
 		@player.position.x = 630
 		@player.position.y = @centerY
-		@player.move("right")
+		@player.move(:right)
 		@player.position.x.should == 629
 	end
 
@@ -155,7 +155,7 @@ describe Player do
 		#there's a wall in 5,3
 		@player.position.x = 120
 		@player.position.y = 90
-		@player.move('right')
+		@player.move(:right)
 		@player.position.x.should == 119
 	end
 
@@ -163,7 +163,7 @@ describe Player do
 		#there's a wall in 2,1
 		@player.position.x = 90
 		@player.position.y = 30
-		@player.move('left')
+		@player.move(:left)
 		@player.position.x.should == 91
 	end
 
@@ -172,7 +172,7 @@ describe Player do
 
 		@player.position.x = 60
 		@player.position.y = 90
-		@player.move('up')
+		@player.move(:up)
 		@player.position.y.should == 91
 	end
 
@@ -180,25 +180,25 @@ describe Player do
 		#there's a wall in 2,9
 		@player.position.x = 40
 		@player.position.y = 240
-		@player.move('down')
+		@player.move(:down)
 		@player.position.y.should == 239
 	end
 
 	it "each movent adds a frame" do
 		@player.frame.should == 0
-		@player.move('down')
+		@player.move(:down)
 		@player.frame.should == 1
-		@player.move('down')
+		@player.move(:down)
 		@player.frame.should == 2
 	end
 
 	it "after frame 2 back to frame 0" do
     @player.frame.should == 0
-		@player.move('down')
+		@player.move(:down)
 		@player.frame.should == 1
-		@player.move('down')
+		@player.move(:down)
 		@player.frame.should == 2
- 		@player.move('down')
+ 		@player.move(:down)
 		@player.frame.should == 0
 	end
 end                   

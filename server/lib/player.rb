@@ -15,24 +15,24 @@ module PegaPega
 			@field = field
 			position = Struct.new :x, :y
 			@position = position.new Random.new.rand(50..field.width - 50), Random.new.rand(50..field.height - 50)
-			@direction = "up"
+			@direction = :up
 			@frame = 0
 		end
 
 		def move(direction)
 			case direction
-				when "up"
+				when :up
 					@position.y -= @speed
-					check_hit_wall "up"
-				when "down"
+					check_hit_wall :up
+				when :down
 					@position.y += @speed
-					check_hit_wall "down"
-				when "left"
+					check_hit_wall :down
+				when :left
 					@position.x -= @speed
-					check_hit_wall "left"
-				when "right"
+					check_hit_wall :left
+				when :right
 					@position.x += @speed
-					check_hit_wall "right"
+					check_hit_wall :right
 			end
 			@direction = direction
 			set_frame
@@ -45,13 +45,13 @@ module PegaPega
 
 		def check_hit_wall(direction)
 			case direction
-				when "up"
+				when :up
 					@position.y = ((top / @height) * @height) + @height + 1 if hit_wall_top?
-				when "down"
+				when :down
           @position.y = ((bottom / @height) * @height) - @height - 1 if hit_wall_bottom?
-				when "left"
+				when :left
 					@position.x = ((left / @width) * @width) + @width + 1 if hit_wall_left?
-				when "right"
+				when :right
 					@position.x = ((right / @width) * @width) - @width - 1 if hit_wall_right?
 			end
 		end

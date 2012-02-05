@@ -2,7 +2,7 @@ var PegaPega = PegaPega || {};
 
 PegaPega.TheGame = function() {
 
-	var host = "192.168.1.2"; // change this to the address of your server
+	var host = "localhost"; // change this to the address of your server
 	var canvasWidth = 690;
 	var canvasHeight = 390;
 	var elementsControl = new PegaPega.ElementsControl();
@@ -32,7 +32,7 @@ PegaPega.TheGame = function() {
 			});
 		}
 		else {
-			draw.field(theField);
+//draw.field(theField);
 			elementsControl.clearPlayerList();
 			for(var i = 0; i < result.length; i++) {
 				var playerInfo = result[i].player;
