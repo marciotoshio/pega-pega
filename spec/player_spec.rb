@@ -47,30 +47,30 @@ describe Player do
 
 	it "cannot leave top bound" do
 		@player.position.x = @centerX
-		@player.position.y = 20
+		@player.position.y = 30
 		@player.move("up")
-		@player.position.y.should == 20
+		@player.position.y.should == 31
 	end
 
 	it "cannot leave bottom bound" do
 		@player.position.x = @centerX
-		@player.position.y = 360
+		@player.position.y = 330
 		@player.move("down")
-		@player.position.y.should == 360
+		@player.position.y.should == 329
 	end
 
 	it "cannot leave left bound" do
-		@player.position.x = 20
+		@player.position.x = 30
 		@player.position.y = @centerY
 		@player.move("left")
-		@player.position.x.should == 20
+		@player.position.x.should == 31
 	end
 
 	it "cannot leave right bound" do
-		@player.position.x = 640
+		@player.position.x = 630
 		@player.position.y = @centerY
 		@player.move("right")
-		@player.position.x.should == 640
+		@player.position.x.should == 629
 	end
 
 	it "not caught a player" do
@@ -153,34 +153,34 @@ describe Player do
 
 	it "cannot move right if there's a wall" do
 		#there's a wall in 5,3
-		@player.position.x = 80
-		@player.position.y = 73
+		@player.position.x = 120
+		@player.position.y = 90
 		@player.move('right')
-		@player.position.x.should == 80
+		@player.position.x.should == 119
 	end
 
 	it "cannot move left if there's a wall" do
 		#there's a wall in 2,1
-		@player.position.x = 60
-		@player.position.y = 20
+		@player.position.x = 90
+		@player.position.y = 30
 		@player.move('left')
-		@player.position.x.should == 60
+		@player.position.x.should == 91
 	end
 
 	it "cannot move up if there's a wall" do
 		#there's a wall in 2,2
 
-		@player.position.x = 40
-		@player.position.y = 60
+		@player.position.x = 60
+		@player.position.y = 90
 		@player.move('up')
-		@player.position.y.should == 60
+		@player.position.y.should == 91
 	end
 
 	it "cannot move down if there's a wall" do
-		#there's a wall in 2,10
+		#there's a wall in 2,9
 		@player.position.x = 40
-		@player.position.y = 180
+		@player.position.y = 240
 		@player.move('down')
-		@player.position.y.should == 180
+		@player.position.y.should == 239
 	end
 end                   

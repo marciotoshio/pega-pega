@@ -40,13 +40,13 @@ module PegaPega
 		def check_hit_wall(direction)
 			case direction
 				when "up"
-					@position.y = ((top / @height) * @height) + @height if hit_wall_top?
+					@position.y = ((top / @height) * @height) + @height + 1 if hit_wall_top?
 				when "down"
-          @position.y = ((bottom / @height) * @height) - @height if hit_wall_bottom?
+          @position.y = ((bottom / @height) * @height) - @height - 1 if hit_wall_bottom?
 				when "left"
-					@position.x = ((left / @width) * @width) + @width if hit_wall_left?
+					@position.x = ((left / @width) * @width) + @width + 1 if hit_wall_left?
 				when "right"
-					@position.x = ((right / @width) * @width) - @width if hit_wall_right?
+					@position.x = ((right / @width) * @width) - @width - 1 if hit_wall_right?
 			end
 		end
 

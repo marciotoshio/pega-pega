@@ -2,7 +2,7 @@ var PegaPega = PegaPega || {};
 
 PegaPega.TheGame = function() {
 
-	var host = "192.168.0.14"; // change this to the address of your server
+	var host = "192.168.1.2"; // change this to the address of your server
 	var canvasWidth = 690;
 	var canvasHeight = 400;
 	var elementsControl = new PegaPega.ElementsControl();

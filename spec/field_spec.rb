@@ -13,12 +13,12 @@ describe Field do
 		@field.get_field.should be_kind_of(Matrix)
 	end
 
-	it 'has a width of 680' do
-		@field.width.should == 680
+	it 'has a width of 690' do
+		@field.width.should == 690
 	end
 
-	it 'has a height of 400' do
-		@field.height.should == 400
+	it 'has a height of 390' do
+		@field.height.should == 390
 	end
 
 	it 'has a wall in 0,0' do
