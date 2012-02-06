@@ -5,11 +5,11 @@ PegaPega.TheGame = function() {
 	var host = "localhost"; // change this to the address of your server
 	var canvasWidth = 690;
 	var canvasHeight = 390;
-	var elementsControl = new PegaPega.ElementsControl();
-	var socket = new PegaPega.WebSocket();
-	var draw = new PegaPega.Draw();
+	var elementsControl, socket, draw, cleaner;
 
 	this.start  = function() {
+		elementsControl = new PegaPega.ElementsControl();
+		socket = new PegaPega.WebSocket();
 		elementsControl.init(initCallback);
 	}
 	
@@ -23,11 +23,12 @@ PegaPega.TheGame = function() {
 	var theField;
 	function onMessage(msg) {
 		var result = JSON.parse(msg);
-		
 		if(result.field) {
-			theField = result.field;
-			draw.load(function() {
-				draw.field(theField);
+			draw = new PegaPega.Draw();
+			theField = new PegaPega.Field(result.field);
+			cleaner = new PegaPega.Cleaner(theField);
+			draw.loadSprite(function() {
+				draw.paint(theField);
 				socket.sendMessage("[join]::" + 'teste');
 			});
 		}
@@ -37,8 +38,9 @@ PegaPega.TheGame = function() {
 				var playerInfo = result[i].player;
 				elementsControl.addToLIst(playerInfo);
 				var player = new PegaPega.Player(playerInfo);
-				draw.clearAround(player);
-				draw.player(player);
+				cleaner.cleanAround(player);
+				draw.paint(cleaner);
+				draw.paint(player);
 			}
 		}
 	}
@@ -59,4 +61,4 @@ PegaPega.TheGame = function() {
 		    break;
 		}
 	}
-}
+};

@@ -23,4 +23,4 @@ PegaPega.WebSocket = function() {
 	this.sendMessage = function(msg) {
 		socket.send(msg);
 	}
-}
+};
