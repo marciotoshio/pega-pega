@@ -34,12 +34,11 @@ PegaPega.TheGame = function() {
 		}
 		else {
 		 	elementsControl.clearPlayerList();
+			draw.paint(theField);
 			for(var i = 0; i < result.length; i++) {
 				var playerInfo = result[i].player;
 				elementsControl.addToLIst(playerInfo);
 				var player = new PegaPega.Player(playerInfo);
-				cleaner.cleanAround(player);
-				draw.paint(cleaner);
 				draw.paint(player);
 			}
 		}
