@@ -14,7 +14,7 @@ PegaPega.TheGame = function() {
 	}
 	
 	//private
-	function initCallback(playerName) {
+	function initCallback() {
 		socket.connect(host, onMessage, function() {
 			window.addEventListener('keydown', onKeyDown, true);
 		});
@@ -29,7 +29,7 @@ PegaPega.TheGame = function() {
 			cleaner = new PegaPega.Cleaner(theField);
 			draw.loadSprite(function() {
 				draw.paint(theField);
-				socket.sendMessage("[join]::" + 'teste');
+				socket.sendMessage("[join]::" + elementsControl.getPlayerName());
 			});
 		}
 		else {

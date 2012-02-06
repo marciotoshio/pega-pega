@@ -2,17 +2,16 @@ var PegaPega = PegaPega || {};
 
 PegaPega.ElementsControl = function() {
 	
-	var callback;
-
 	this.init = function (initCallback) {
 		var enterButton = document.getElementById('enter-game');
 		enterButton.addEventListener('click', hideStartupShowMain, false);
-		enterButton.addEventListener('click', getPlayerName, false);
-		
-		this.clearPlayerList ();
-		
-		callback = initCallback;
+		enterButton.addEventListener('click', initCallback, false);
+		this.clearPlayerList();	
 	}
+
+	this.getPlayerName = function() {
+		return document.getElementById('player-name').value;
+	} 
 
 	this.clearPlayerList = function () {
 		var list = document.getElementById('the-list');
@@ -41,12 +40,7 @@ PegaPega.ElementsControl = function() {
 		evt.preventDefault();
 		hideStartup();
 		showMain();
-	}
-	
-	function getPlayerName() {
-		var playerName = document.getElementById('player-name').value;
-		callback(playerName);
-	}
+	}	
 	
 	function hideStartup() {
 		var screen = document.getElementById('startup-screen');
