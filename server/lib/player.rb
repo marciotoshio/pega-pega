@@ -15,6 +15,7 @@ module PegaPega
 			@field = field
 			position = Struct.new :x, :y
 			@position = position.new Random.new.rand(50..field.width - 50), Random.new.rand(50..field.height - 50)
+			#@position = position.new 30,30
 			@direction = :up
 			@frame = 0
 		end

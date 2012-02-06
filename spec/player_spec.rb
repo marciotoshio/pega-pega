@@ -1,13 +1,13 @@
 require_relative 'spec_helper.rb'
 require_relative '../server/lib/player'
-require_relative '../server/lib/fields/field'
+require_relative '../server/lib/fields/field_for_test'
 
 include PegaPega
 include PegaPega::Fields
 
 describe Player do
 	before(:each) do
-		@field = Field.new
+		@field = FieldForTest.new
 		@centerX = @field.width / 2
 		@centerY = @field.height / 2
     @player = Player.new nil, "player1", @field

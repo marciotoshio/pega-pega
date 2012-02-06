@@ -1,12 +1,12 @@
 require_relative 'spec_helper.rb'
-require_relative '../server/lib/fields/field'
+require_relative '../server/lib/fields/field_for_test'
 
 include PegaPega
 include PegaPega::Fields
 
-describe Field do
+describe FieldForTest do
 	before(:all) do
-		@field = Field.new
+		@field = FieldForTest.new
   end
 
 	it 'has a matrix' do
