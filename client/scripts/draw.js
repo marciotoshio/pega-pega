@@ -4,7 +4,6 @@ PegaPega.Draw = function() {
 	var blockSize = 30;
 	var context = document.getElementById('the-field').getContext('2d');
 	var sprite = new Image();
-	var currentFrame = {x:0,y:0};
 
 	this.paint = function(subject) {
 		subject.draw(drawImage);
@@ -15,7 +14,7 @@ PegaPega.Draw = function() {
 		sprite.src = 'img/sprite.png';
 	}
  
-	function drawImage(x, y) {
-		context.drawImage(sprite, this.getCurrentFrame().x*blockSize, this.getCurrentFrame().y*blockSize, blockSize, blockSize, x*blockSize, y*blockSize, blockSize, blockSize);
+	function drawImage() {
+		context.drawImage(sprite, this.getCurrentFrame().x*blockSize, this.getCurrentFrame().y*blockSize, blockSize, blockSize, this.getCurrentPosition().x*blockSize, this.getCurrentPosition().y*blockSize, blockSize, blockSize);
 	}
 };
