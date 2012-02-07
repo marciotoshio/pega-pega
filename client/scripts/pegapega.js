@@ -20,12 +20,11 @@ PegaPega.TheGame = function() {
 		});
 	}
 
-	var theField;
 	function onMessage(msg) {
 		var result = JSON.parse(msg);
 		if(result.field) {
 			draw = new PegaPega.Draw();
-			theField = new PegaPega.Field(result.field);
+			var theField = new PegaPega.Field(result.field);
 			cleaner = new PegaPega.Cleaner(theField);
 			draw.loadSprite(function() {
 				draw.paint(theField);
@@ -34,13 +33,16 @@ PegaPega.TheGame = function() {
 		}
 		else {
 		 	elementsControl.clearPlayerList();
+			var players = new Array();
 			for(var i = 0; i < result.length; i++) {
-				var playerInfo = result[i].player;
-				elementsControl.addToLIst(playerInfo);
-				var player = new PegaPega.Player(playerInfo);
+				player = new PegaPega.Player(result[i].player);
+				elementsControl.addToLIst(player.info);
 				cleaner.cleanAround(player);
 				draw.paint(cleaner);
-				draw.paint(player);
+				players.push(player);
+			}
+			for(var i = 0; i < players.length; i++) {
+				draw.paint(players[i]);
 			}
 		}
 	}

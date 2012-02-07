@@ -3,6 +3,7 @@ var PegaPega = PegaPega || {};
 PegaPega.Player = function(playerInfo) {
 	var currentFrame = {x:0,y:0};
 	this.dimension = {width: 30, height: 30};
+  this.info = playerInfo;
 
 	this.draw = function(callback) {
 		setFrame();
