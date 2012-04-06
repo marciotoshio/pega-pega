@@ -9,24 +9,24 @@ canvas {
 }
 
 span.square {
-	width: 10px;
-	height: 10px;
+	width: 16px;
+	height: 20px;
 	text-indent: -100em;
 	overflow: hidden;
-	border: 3px solid black;
 	display: inline-block;
+	background-image: url('../img/sprite-legend.png');
 }
 
 span.red {
-	background-color: red;
+	background-position: 0 0;
 }
 
 span.yellow {
-	background-color: yellow;
+	background-position: -16px 0;
 }
 
 span.blue {
-	background-color: #8ED6FF;
+	background-position: -34px 0;
 }
 
 .label {
