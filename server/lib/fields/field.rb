@@ -19,7 +19,7 @@ module PegaPega::Fields
 			@field
 		end
 
-		 def to_json(*a)
+		def to_json(*a)
 		  { "field" => @field.to_a }.to_json(*a)
 		end
 	end

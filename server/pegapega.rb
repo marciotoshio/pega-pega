@@ -1,14 +1,11 @@
 require 'eventmachine'
 require 'em-websocket'
 require_relative 'lib/game'
-require_relative 'lib/fields/field'
-#Dir['lib/fields/*.rb'].each { |f| require_relative f}
-Dir['/lib/fields/*.rb'].each { |f| require f}
+#Dir[File.dirname(__FILE__) + 'lib/fields/*.rb'].each { |f| require_relative f.chomp!.chomp!.chomp! }
+require_relative 'lib/fields/default_field'
 
 module PegaPega
-	include PegaPega::Fields
-
-	game = Game.new DefaultField.new
+	game = Game.new Fields::DefaultField.new
 	port = 30000
 	
 	def self.debug_message(msg)
