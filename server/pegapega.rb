@@ -13,7 +13,7 @@ module PegaPega
 	end
 
 	EventMachine.run do
-		EventMachine::WebSocket.start(:host => '0.0.0.0', :port => port, :debug => true) do |client|
+		EventMachine::WebSocket.start(:host => '0.0.0.0', :port => port, :debug => false) do |client|
 			
 			client.onopen do
 				debug_message "client connected: " + client.to_s
