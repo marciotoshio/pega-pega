@@ -1,3 +1,5 @@
+It's not a real game since there's no game loop, the events are sended when key is pressed
+
 1) bundle install
 2) run the server => "ruby server/pegapega.rb"
 3) edit client/scripts/pegapega.js and change the "host" var to point to your server
